@@ -8,9 +8,17 @@
         <version>3.2.0</version>
         <relativePath/> <!-- lookup parent from repository -->
     </parent>
-    <groupId>com.example</groupId>
+    <groupId>com.twentyfive</groupId>
     <artifactId>custom-generator-annotator</artifactId>
-    <version>0.0.1-SNAPSHOT</version>
+    <packaging>jar</packaging>
+    <version>0.0.1</version>
+    <distributionManagement>
+        <repository>
+            <id>github</id>
+            <name>GitHub Twentyfivesrls Apache Maven Packages</name>
+            <url>https://maven.pkg.github.com/Twentyfivesrls/custom-generator-annotator</url>
+        </repository>
+    </distributionManagement>
     <name>custom-generator-annotator</name>
     <description>custom-generator-annotator</description>
     <properties>
@@ -24,6 +32,17 @@
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-web</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>org.jsonschema2pojo</groupId>
+            <artifactId>jsonschema2pojo-core</artifactId>
+            <version>0.4.0</version>
+        </dependency>
+        <dependency>
+            <groupId>javax.persistence</groupId>
+            <artifactId>persistence-api</artifactId>
+            <version>1.0.2</version>
+            <scope>provided</scope>
         </dependency>
 
         <dependency>
@@ -41,16 +60,17 @@
     <build>
         <plugins>
             <plugin>
-                <groupId>org.springframework.boot</groupId>
-                <artifactId>spring-boot-maven-plugin</artifactId>
-                <configuration>
-                    <excludes>
-                        <exclude>
-                            <groupId>org.projectlombok</groupId>
-                            <artifactId>lombok</artifactId>
-                        </exclude>
-                    </excludes>
-                </configuration>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-source-plugin</artifactId>
+                <version>3.1.0</version>
+                <executions>
+                    <execution>
+                        <id>attach-sources</id>
+                        <goals>
+                            <goal>jar</goal>
+                        </goals>
+                    </execution>
+                </executions>
             </plugin>
         </plugins>
     </build>
